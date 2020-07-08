@@ -6,6 +6,7 @@ const builds = [
         "videoCard":"Vega 11",
         "cpu":"R5 3400G",
         "ram":"16GB 3000 MHz",
+        "mobo": "A320-M",
         "imgUrl":"https://www.sedatech.net/Produktbilder/Gehause/case_1000x1000/main/nzxt_h200i-black-blue.jpg"
     },
 
