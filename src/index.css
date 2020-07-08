@@ -1,0 +1,27 @@
+html {
+    scroll-behavior: initial;
+}
+
+body {
+    background: whitesmoke;
+    font-family: Roboto, sans-serif;
+}
+
+.slideshow {
+    border: 5px solid black;
+    border-radius: 5px;
+}
+
+.sign-in-form {
+    padding: 20px;
+}
+
+.upper-site {
+    padding: 20px 20px;
+}
+
+@media (max-width:629px) {
+    .pc-info , .price-button {
+    display: none;
+    }
+}
