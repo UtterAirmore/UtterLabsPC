@@ -11,9 +11,12 @@ function Shop(props) {
     
     if (props.type === "Gaming")
         var arr = builds;
-    else
+    else if (props.type === "Studio")
         //eslint-disable-next-line
         var arr = studioBuilds;
+    else if (props.type === "Special")
+        //eslint-disable-next-line
+        var arr = builds.filter(build => build.type ==="special")
 
     const buildInfo = arr.map(x => {
         return (

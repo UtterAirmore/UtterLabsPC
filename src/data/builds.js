@@ -2,12 +2,15 @@ const builds = [
     {
         "type": "gaming",
         "name":"Tier-1",
-        "price":"500€",
+        "price":"440€",
         "videoCard":"Vega 11",
         "cpu":"R5 3400G",
         "ram":"16GB 3000 MHz",
-        "mobo": "A320-M",
-        "imgUrl":"https://www.sedatech.net/Produktbilder/Gehause/case_1000x1000/main/nzxt_h200i-black-blue.jpg"
+        "mobo": "Gigabyte B450M DS3H",
+        "storage": "1TB hdd",
+        "psu": "EVGA 450BT",
+        "cooling": "Stock cooler",
+        "imgUrl":"https://cdn.awsli.com.br/300x300/1313/1313360/produto/509838384e41358983.jpg"
     },
 
     {
