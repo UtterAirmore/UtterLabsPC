@@ -23,9 +23,6 @@ function App() {
                     <Route path="/" element={<Shop type="Special" />} />
                     <Route path="/:name" element={<BuildPage type="special" name={url} />} />
                 </Route>
-                <Route path="/special">
-                    <Route path="/:name" element={<BuildPage type="special" name={url} />} />
-                </Route>
                 <Route path="/studio" >
                     <Route path="/" element={<Shop type="Studio" />} />
                     <Route path="/:name" element={<BuildPage type="studio" name={url}/>} />

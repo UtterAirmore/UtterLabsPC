@@ -1,16 +1,16 @@
 const builds = [
     {
         "type": "gaming",
-        "name":"Tier-1",
-        "price":"440€",
-        "videoCard":"Vega 11",
-        "cpu":"R5 3400G",
-        "ram":"16GB 3000 MHz",
+        "name": "Tier-1",
+        "price": "440€",
+        "videoCard": "Vega 11",
+        "cpu": "R5 3400G",
+        "ram": "16GB 3000 MHz",
         "mobo": "Gigabyte B450M DS3H",
         "storage": "1TB hdd",
         "psu": "EVGA 450BT",
         "cooling": "Stock cooler",
-        "imgUrl":"https://cdn.awsli.com.br/300x300/1313/1313360/produto/509838384e41358983.jpg"
+        "imgUrl": "https://cdn.awsli.com.br/300x300/1313/1313360/produto/509838384e41358983.jpg"
     },
 
     {

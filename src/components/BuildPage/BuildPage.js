@@ -1,6 +1,6 @@
 import React from "react"
 
-import {Col, Row, Container, Image, ListGroup, Button, Badge} from "react-bootstrap"
+import { Col, Row, Container, Image, ListGroup, Button, Badge } from "react-bootstrap"
 
 import builds from "../../data/builds"
 import studioBuilds from "../../data/studio-builds"
@@ -21,10 +21,10 @@ class BuildInfo extends React.Component {
     }
 
     render() {
-        return(
+        return (
             <div>
                 <ListGroup className="text-center">
-                    <ListGroup.Item><img src={cpu} alt=""/>{this.state.cpu} </ListGroup.Item>
+                    <ListGroup.Item><img src={cpu} alt="" />{this.state.cpu} </ListGroup.Item>
                     <ListGroup.Item><img src={gpu} alt="" />{this.state.videoCard}</ListGroup.Item>
                     <ListGroup.Item><img src={ram} alt="" />{this.state.ram}</ListGroup.Item>
                     <ListGroup.Item><img src={mobo} alt="" />{this.state.mobo}</ListGroup.Item>
@@ -38,12 +38,12 @@ class BuildInfo extends React.Component {
     }
 }
 
-function BuildPage(props)  {
-    let {name} = useParams()
+function BuildPage(props) {
+    let { name } = useParams()
 
-    let build = (props.type === "gaming" || props.type === "special")  ? builds.find(build => build.name === name) : studioBuilds.find(build => build.name === name)
+    let build = (props.type === "gaming" || props.type === "special") ? builds.find(build => build.name === name) : studioBuilds.find(build => build.name === name)
 
-    return(
+    return (
         <Container fluid>
             <Row className="p-2">
                 <Col className=" img-thumbnail">
