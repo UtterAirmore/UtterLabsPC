@@ -34,7 +34,7 @@ class ComputerCard extends React.Component {
               <Col>
                 <ListGroup className="pc-info" variant="flush">
                   <ListGroup.Item >{this.props.cpu}</ListGroup.Item>
-                  <ListGroup.Item>{this.props.videoCard}</ListGroup.Item>
+                  <ListGroup.Item>{this.props.gpu}</ListGroup.Item>
                   <ListGroup.Item>{this.props.ram}</ListGroup.Item>
                 </ListGroup>
               </Col>

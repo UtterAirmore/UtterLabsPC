@@ -5,6 +5,14 @@ import ComputerCard from "../ComputerCard/ComputerCard"
 import builds from "../../data/builds"
 import studioBuilds from "../../data/studio-builds"
 
+import cpus from "../../data/cpus"
+import gpus from "../../data/gpus"
+import mobos from "../../data/mobos"
+
+function getFirstElement(arr, db) {
+    let result = Object.values(arr)
+    return(result)
+}
 
 function GetRandomBuilds(arr, num) {
     var result = new Array(num),
@@ -22,8 +30,8 @@ function GetRandomBuilds(arr, num) {
         return(
             <Col><ComputerCard
                 name={x.name}
-                cpu={x.cpu}
-                videoCard={x.videoCard}
+                cpu={x.cpus}
+                gpu={x.gpus}
                 ram={x.ram}
                 imgUrl={x.imgUrl}
                 price={x.price}
@@ -45,7 +53,7 @@ class MainPcCard extends React.Component {
                     <Col>{this.props.type === "Gaming" ? (<Button href="/gaming">View All</Button>) : (<Button href="/studio">View All</Button>)}</Col>
                 </Row>
                 <Row xl={2} lg={2} md={2} xs={1}>
-                    {this.props.type === "Gaming" ? ( GetRandomBuilds(builds, 4) ) : (GetRandomBuilds(studioBuilds, 4))}
+                    {this.props.type === "Gaming" ? ( GetRandomBuilds(builds, 1) ) : (GetRandomBuilds(studioBuilds, 4))}
                 </Row>
             </Container>
         )
