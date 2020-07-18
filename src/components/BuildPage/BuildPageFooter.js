@@ -7,11 +7,7 @@ import styles from "./footer.module.css"
 function BuildPageFooter() {
     return(
         <footer className={styles.footer}>
-            <Col>
-                <Row>
-                    
-                </Row>
-            </Col>
+            hello
         </footer>
     )
 }

@@ -1,20 +1,32 @@
 import React from "react"
 
-import { Col, Row, Container, Image, Badge, Form } from "react-bootstrap"
+import { Col, Row, Container, Image, Badge, ToggleButton , ButtonGroup} from "react-bootstrap"
 
 import { useParams } from "react-router-dom";
-import builds from "../../data/builds"
+
+import builds from "../../data/builds" 
 import cpus from "../../data/cpus"
 import gpus from "../../data/gpus"
 import mobos from "../../data/mobos"
 
 import BuildPageFooter from "./BuildPageFooter"
 
+import styles from "./buildpage.module.css"
+
 function getInfo(arr, db) {
     const buildInfo = arr.map(x => {
         const info = db.find(info => info.id === x)
         return (
-            <option>{info.name}</option>
+            <Row className="m-2">
+                <ToggleButton
+                    type="radio"
+                    variant="secondary"
+                    name="radio"
+
+                    >{info.name}
+                </ToggleButton>
+            </Row>
+            
         )
     })
     return (buildInfo)
@@ -22,19 +34,14 @@ function getInfo(arr, db) {
 
 function partsInfo(type, db, part) {
     return(
-        <Form>
-            <Form.Group controlId="exampleForm.SelectCustom">
-                <Row>
-                    <Col xl={2} sm={3}><Badge className=" p-2 float-right" variant="success">{type}</Badge></Col>
-                    <Col xl={9} sm={8}>
-                        <Form.Control as="select" custom>
-                            {getInfo(part, db)}
-                        </Form.Control>
-                    </Col>
-                </Row>
-            </Form.Group>
-        </Form>
-    )
+        <Row>
+            <Col xl={2} sm={3}><Badge className=" p-2 float-right" variant="success">{type}</Badge></Col>
+                <ButtonGroup toggle>
+                    {getInfo(part, db)}
+                </ButtonGroup>
+        </Row>
+
+  )
 }
 
 function BuildInfo(props) {
@@ -58,7 +65,7 @@ function NewBuildPage(props) {
 
     return (
         <div>
-            <Container fluid>
+            <Container fluid className={styles.main}>
                 <Row className="p-2">
                     <Col className=" img-thumbnail">
                         <article>
