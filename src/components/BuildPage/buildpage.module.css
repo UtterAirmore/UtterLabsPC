@@ -19,10 +19,25 @@
     top: 0;
     bottom: 0;
     
-    width:100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-top: 20px;
+    
 
     border-style: solid;
     border-radius: 5px;
     border-color: #D6D6D6;
     border-width: 2px;
+}
+
+.bottomText {
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #D6D6D6;
+    border-width: 2px;
+
+    margin: 40px;
+    padding: 20px;
 }
