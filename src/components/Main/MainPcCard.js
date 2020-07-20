@@ -10,8 +10,9 @@ import gpus from "../../data/gpus"
 import mobos from "../../data/mobos"
 
 function getFirstElement(arr, db) {
-    let result = Object.values(arr)
-    return(result)
+    let result = db.find(info => info.id === arr[0]);
+    return result.name;
+
 }
 
 function GetRandomBuilds(arr, num) {
@@ -30,9 +31,9 @@ function GetRandomBuilds(arr, num) {
         return(
             <Col><ComputerCard
                 name={x.name}
-                cpu={x.cpus}
+                cpu={getFirstElement(x.cpus, cpus)}
                 gpu={x.gpus}
-                ram={x.ram}
+                ram={x.rams}
                 imgUrl={x.imgUrl}
                 price={x.price}
                 type={x.type}
