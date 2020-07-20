@@ -1,11 +1,17 @@
 import React from "react"
 
+import {getFirstElement} from "../../utilities/utilities"
+
 import {Container, Row, Col} from "react-bootstrap"
 
 import ComputerCard from "../ComputerCard/ComputerCard"
 
 import builds from "../../data/builds"
 import studioBuilds from "../../data/studio-builds"
+
+import cpus from "../../data/cpus"
+import gpus from "../../data/gpus"
+import rams from "../../data/rams"
 
 function Shop(props) {
     
@@ -22,9 +28,9 @@ function Shop(props) {
         return (
             <Col><ComputerCard 
                 name={x.name}
-                cpu={x.cpu}
-                videoCard={x.videoCard}
-                ram={x.ram}
+                cpu={getFirstElement(x.cpus, cpus)}
+                gpu={getFirstElement(x.gpus, gpus)}
+                ram={getFirstElement(x.rams, rams)}
                 imgUrl={x.imgUrl}
                 price={x.price}
                 type={x.type}

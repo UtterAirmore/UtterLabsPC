@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Col, Row, Container, Image, Badge, ToggleButton , ToggleButtonGroup} from "react-bootstrap"
+import { Col, Row, Container, Image, Badge} from "react-bootstrap"
 
 import { useParams } from "react-router-dom";
 
@@ -12,13 +12,17 @@ import rams from "../../data/rams"
 
 import BuildPageFooter from "./BuildPageFooter"
 
-import styles from "./buildpage.module.css"
+import styles from "./buildpage.module.scss"
 
 function getInfo(arr, db) {
     const buildInfo = arr.map(x => {
         const info = db.find(info => info.id === x)
         return (
-            <Row><div className={styles.option}>{info.name}</div></Row>
+                    <div className="inputGroup">
+                        <input id={info.id} name="radio" type="radio" />
+                        <label for={info.id}>{info.name}</label>
+                    </div>            
+
         )
     })
     return (buildInfo)
@@ -29,7 +33,9 @@ function partsInfo(type, db, part) {
         <div>
             <h4>{type}</h4>
             <Col>
-                {getInfo(part, db)}
+                <form>
+                    {getInfo(part, db)}
+                </form>
             </Col>
         </div>
 

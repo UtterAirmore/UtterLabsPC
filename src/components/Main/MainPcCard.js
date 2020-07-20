@@ -1,5 +1,7 @@
 import React from "react"
 
+import {getFirstElement} from "../../utilities/utilities"
+
 import { Container, Button, Col, Row } from "react-bootstrap"
 import ComputerCard from "../ComputerCard/ComputerCard"
 import builds from "../../data/builds"
@@ -7,13 +9,7 @@ import studioBuilds from "../../data/studio-builds"
 
 import cpus from "../../data/cpus"
 import gpus from "../../data/gpus"
-import mobos from "../../data/mobos"
-
-function getFirstElement(arr, db) {
-    let result = db.find(info => info.id === arr[0]);
-    return result.name;
-
-}
+import rams from "../../data/rams"
 
 function GetRandomBuilds(arr, num) {
     var result = new Array(num),
@@ -26,14 +22,14 @@ function GetRandomBuilds(arr, num) {
         result[num] = arr[x in taken ? taken[x] : x];
         taken[x] = --len in taken ? taken[len] : len;
     }
-
+    console.log(result)
     const card = result.map(x => {
         return(
             <Col><ComputerCard
                 name={x.name}
-                cpu={getFirstElement(x.cpus, cpus)}
-                gpu={x.gpus}
-                ram={x.rams}
+                cpu={x.cpus ? getFirstElement(x.cpus, cpus) : ""}
+                gpu={x.gpus ? getFirstElement(x.gpus, gpus) : ""}
+                ram={x.rams ? getFirstElement(x.rams, rams) : ""}
                 imgUrl={x.imgUrl}
                 price={x.price}
                 type={x.type}
