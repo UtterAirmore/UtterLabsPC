@@ -3,4 +3,9 @@ function getFirstElement(arr, db) {
     return result.name;
 }
 
-export {getFirstElement}
+function getPrice(id, db) {
+    const result = db.find(info => info.id === id)
+    return result.price
+}
+
+export {getFirstElement, getPrice}

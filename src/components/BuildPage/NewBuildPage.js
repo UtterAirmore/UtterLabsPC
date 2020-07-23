@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 
 import { Col, Row, Container, Image, Badge} from "react-bootstrap"
 
@@ -11,55 +11,38 @@ import mobos from "../../data/mobos"
 import rams from "../../data/rams"
 
 import BuildPageFooter from "./BuildPageFooter"
+import PartsInfo from "./PartsInfo"
 
 import styles from "./buildpage.module.scss"
 
-function getInfo(arr, db) {
-    const buildInfo = arr.map(x => {
-        const info = db.find(info => info.id === x)
-        return (
-                    <div className="inputGroup">
-                        <input id={info.id} name="radio" type="radio" />
-                        <label for={info.id}>{info.name}</label>
-                    </div>            
-
-        )
-    })
-    return (buildInfo)
-}
-
-function partsInfo(type, db, part) {
-    return(
-        <div>
-            <h4>{type}</h4>
-            <Col>
-                <form>
-                    {getInfo(part, db)}
-                </form>
-            </Col>
-        </div>
-
-  )
-}
-
-function BuildInfo(props) {
-    return(
-        <div>
-            {partsInfo("Processor", cpus, props.build.cpus)}
-            {partsInfo("Video card", gpus, props.build.gpus)}
-            {partsInfo("Motherboard", mobos, props.build.mobos)}
-            {partsInfo("Ram", rams, props.build.rams)}
-
-        </div>
-    )
-}
-
-
+import {getPrice} from "../../utilities/utilities"
 
 function NewBuildPage(props) {
+
     let { name } = useParams()
 
     let build =  builds.find(build => build.name === name)
+
+    const [cpuPrice, updateCpuPrice] = useState(getPrice(build.cpus[0], cpus))
+    const [gpuPrice, updateGpuPrice] = useState(getPrice(build.gpus[0], gpus))
+    const [moboPrice, updateMoboPrice] = useState(getPrice(build.mobos[0], mobos))
+    const [ramPrice, updateRamPrice] = useState(getPrice(build.rams[0], rams))
+    const [currentPrice, updateCurrentPrice] = useState(cpuPrice + gpuPrice + moboPrice + ramPrice)
+
+    const cpuUpdate = (price) => {
+        updateCpuPrice(price)
+    }
+    const gpuUpdate = (price) => {
+        updateGpuPrice(price)
+    }
+    const moboUpdate = (price) => {
+        updateMoboPrice(price)
+    }
+    const ramUpdate = (price) => {
+        updateRamPrice(price)
+    }
+
+    useEffect(()=>{updateCurrentPrice(cpuPrice + gpuPrice + moboPrice + ramPrice)}, [cpuPrice, gpuPrice, moboPrice, ramPrice])
 
     return (
         <div>
@@ -77,7 +60,10 @@ function NewBuildPage(props) {
                 <Row>
                     <Col  xl={6} sm={6}><Image className={styles.image} src={build.imgUrl} /></Col>
                     <Col xl={5} sm={5}>
-                        <BuildInfo build={build} />
+                        <PartsInfo onChange={cpuUpdate} type="Processor" db={cpus} part={build.cpus} />
+                        <PartsInfo onChange={gpuUpdate} type="Video Card" db={gpus} part={build.gpus} />
+                        <PartsInfo onChange={moboUpdate} type="Motherboard" db={mobos} part={build.mobos} />
+                        <PartsInfo onChange={ramUpdate} type="Ram" db={rams} part={build.rams} />
 
                     </Col>
                 </Row>
@@ -96,7 +82,11 @@ function NewBuildPage(props) {
                     Nulla sit amet varius tellus. Morbi augue nibh, dignissim id convallis et, auctor non leo. Aliquam erat volutpat. Pellentesque sollicitudin blandit volutpat. Cras luctus quam est, pulvinar faucibus dui consectetur ac. Mauris fermentum arcu semper, feugiat augue vitae, facilisis diam. Aenean iaculis mi a diam auctor, sit amet feugiat est maximus. Quisque venenatis convallis elit non fringilla. Curabitur nec hendrerit diam. Sed quis malesuada turpis. Duis tortor lectus, lobortis in lorem a, pellentesque auctor tortor. Proin feugiat dolor nulla, lobortis condimentum leo eleifend id. Nam nisl ante, pulvinar sed maximus eleifend, mattis nec metus. Curabitur nec purus nisl. Pellentesque quam tortor, convallis nec est sit amet, fringilla consequat ipsum.</p>
                 </Row>
             </Container>
-            <BuildPageFooter />
+            <BuildPageFooter cpuprice={cpuPrice} 
+                            gpuprice={gpuPrice}
+                            moboprice={moboPrice}
+                            ramprice={ramPrice}
+                            price={currentPrice}/>
         </div>
     )
 }

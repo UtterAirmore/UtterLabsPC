@@ -7,11 +7,7 @@ class About extends React.Component {
         return (
             <Container className="p-2 text-center" fluid>
                 <Row>
-                    <Col><iframe src="https://discordapp.com/widget?id=727855578717749354&theme=dark" 
-                                width="350" 
-                                height="500" 
-                                allowtransparency="true" 
-                                frameborder="0"></iframe>
+                    <Col>
                     </Col>
                 </Row>
             </Container>
