@@ -8,4 +8,9 @@ function getPrice(id, db) {
     return result.price
 }
 
-export {getFirstElement, getPrice}
+function getElement(id, db) {
+    const result = db.find(info => info.id === id)
+    return result
+}
+
+export {getFirstElement, getPrice, getElement}
