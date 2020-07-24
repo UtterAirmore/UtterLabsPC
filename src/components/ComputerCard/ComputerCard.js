@@ -1,17 +1,7 @@
 import React from "react"
 
-import {Card, Row, Col, Button, ListGroup, Popover, OverlayTrigger} from "react-bootstrap"
+import {Card, Row, Col, Button, Badge, ListGroup} from "react-bootstrap"
 import {Link} from "react-router-dom"
-
-const popover = (
-  <Popover id="popover-basic">
-    <Popover.Title as="h3">Popover</Popover.Title>
-    <Popover.Content>
-      And here's some <strong>amazing</strong> content. It's very engaging.
-      right?
-    </Popover.Content>
-  </Popover>
-);
 
 class ComputerCard extends React.Component {
   constructor(props) {
@@ -42,9 +32,8 @@ class ComputerCard extends React.Component {
             <Row >
               <Col><Link to={this.state.buildUrl}><Button className="details-button float-left" variant="primary" >Details</Button></Link></Col>
               <Col className="price-button">
-                <OverlayTrigger trigger="click" overlay={popover}>
-                  <Button variant="success" style={{ float: "right" }}>{this.props.price}</Button>
-                </OverlayTrigger>
+                <h2><Badge variant="success" style={{ float: "right" }}>{this.props.price}€</Badge></h2>
+
               </Col>
             </Row>
           </Card.Body>

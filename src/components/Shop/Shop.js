@@ -1,6 +1,6 @@
 import React from "react"
 
-import {getFirstElement} from "../../utilities/utilities"
+import {getFirstElement, getElement, getPrice} from "../../utilities/utilities"
 
 import {Container, Row, Col} from "react-bootstrap"
 
@@ -12,6 +12,9 @@ import studioBuilds from "../../data/studio-builds"
 import cpus from "../../data/cpus"
 import gpus from "../../data/gpus"
 import rams from "../../data/rams"
+import mobos from "../../data/mobos"
+import psus from "../../data/psus"
+import cases from "../../data/cases"
 
 function Shop(props) {
     
@@ -31,8 +34,16 @@ function Shop(props) {
                 cpu={getFirstElement(x.cpus, cpus)}
                 gpu={getFirstElement(x.gpus, gpus)}
                 ram={getFirstElement(x.rams, rams)}
-                imgUrl={x.imgUrl}
-                price={x.price}
+                imgUrl={getElement(x.cases[0], cases).img}
+                price={
+                    getPrice(x.cpus[0], cpus) + 
+                    getPrice(x.gpus[0], gpus) + 
+                    getPrice(x.rams[0], rams) +
+                    getPrice(x.mobos[0], mobos) + 
+                    getPrice(x.cases[0], cases) +
+                    getPrice(x.psu[0], psus)
+
+                }
                 type={x.type}
           /></Col>
         )

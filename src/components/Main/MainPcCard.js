@@ -1,6 +1,6 @@
 import React from "react"
 
-import {getFirstElement} from "../../utilities/utilities"
+import {getFirstElement, getElement, getPrice} from "../../utilities/utilities"
 
 import { Container, Button, Col, Row } from "react-bootstrap"
 import ComputerCard from "../ComputerCard/ComputerCard"
@@ -10,6 +10,9 @@ import studioBuilds from "../../data/studio-builds"
 import cpus from "../../data/cpus"
 import gpus from "../../data/gpus"
 import rams from "../../data/rams"
+import mobos from "../../data/mobos"
+import psus from "../../data/psus"
+import cases from "../../data/cases"
 
 function GetRandomBuilds(arr, num) {
     var result = new Array(num),
@@ -30,8 +33,18 @@ function GetRandomBuilds(arr, num) {
                 cpu={x.cpus ? getFirstElement(x.cpus, cpus) : ""}
                 gpu={x.gpus ? getFirstElement(x.gpus, gpus) : ""}
                 ram={x.rams ? getFirstElement(x.rams, rams) : ""}
-                imgUrl={x.imgUrl}
-                price={x.price}
+                imgUrl={x.cases ? getElement(x.cases[0], cases).img : ""}
+                price={
+                    x.cpus && x.gpus && x.rams && x.mobos && x.psu && x.cases ?
+                    
+                    getPrice(x.cpus[0], cpus) + 
+                    getPrice(x.gpus[0], gpus) + 
+                    getPrice(x.rams[0], rams) +
+                    getPrice(x.mobos[0], mobos) + 
+                    getPrice(x.cases[0], cases) +
+                    getPrice(x.psu[0], psus)
+                    : ""
+                }
                 type={x.type}
             /></Col>
         )
@@ -50,7 +63,7 @@ class MainPcCard extends React.Component {
                     <Col>{this.props.type === "Gaming" ? (<Button href="/gaming">View All</Button>) : (<Button href="/studio">View All</Button>)}</Col>
                 </Row>
                 <Row xl={2} lg={2} md={2} xs={1}>
-                    {this.props.type === "Gaming" ? ( GetRandomBuilds(builds, 1) ) : (GetRandomBuilds(studioBuilds, 4))}
+                    {this.props.type === "Gaming" ? ( GetRandomBuilds(builds, 2) ) : (GetRandomBuilds(studioBuilds, 4))}
                 </Row>
             </Container>
         )

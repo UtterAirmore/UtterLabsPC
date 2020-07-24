@@ -7,7 +7,7 @@ import styles from "./buildpage.module.scss"
 
 function OptionButton(props) {
     return(
-        <FormControlLabel className={styles.radio} key={props.id} value={props.id} control={<Radio />} label={props.name} />
+        <FormControlLabel className={styles.radio} key={props.id} value={props.id} control={<Radio color="primary" />} label={props.name} />
     )
 }
 
@@ -15,7 +15,7 @@ function getInfo(arr, db) {
     const buildInfo = arr.map(x => {
         const info = db.find(info => info.id === x)
         return (
-            <OptionButton name={info.name} id={info.id}/>
+            <OptionButton name={info.name} id={info.id}/>            
         )
     })
     return (buildInfo)
@@ -36,7 +36,7 @@ function PartsInfo(props) {
                 <FormLabel component="legend">{props.type}</FormLabel>
                 <RadioGroup aria-label="part" name="part1" value={value} onChange={handleChange}>
                     {getInfo(props.part, props.db)}
-                </RadioGroup>  
+                </RadioGroup>
             </FormControl>
         </div>
 
