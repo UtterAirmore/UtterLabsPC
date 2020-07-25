@@ -55,11 +55,11 @@ function NewBuildPage(props) {
         updateCasePrice(price)
     }
     
-    useEffect(()=>{updateCurrentPrice(
+    useEffect(() => {updateCurrentPrice(
         currentCpu && currentGpu && currentMobo && currentRam && currentStorage ? (
-            currentCpu.price + currentGpu.price + currentMobo.price + currentRam.price + casePrice + currentStorage.price + getPrice(build.psu[0], psus)
+           currentCpu.price + currentGpu.price + currentMobo.price + currentRam.price + casePrice + currentStorage.price + getPrice(build.psu[0], psus)
         ) : ("")
-       )}, [currentCpu, currentGpu, currentMobo, currentRam, casePrice, currentStorage, build.psu])
+        )}, [currentCpu, currentGpu, currentMobo, currentRam, casePrice, currentStorage, build.psu])
 
     return (
         <div>

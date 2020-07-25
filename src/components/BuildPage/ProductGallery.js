@@ -11,7 +11,8 @@ function ProductGallery(props) {
     const [selected, setSelected] = useState("0")
     const [currentCase, updateCase] = useState(getElement(props.build.cases[0], cases))
 
-    const selectCase = (id) => {
+    const selectCase = (id, i) => {
+        setSelected(i)
         updateCase(getElement(id, cases))
     }
 
@@ -26,7 +27,7 @@ function ProductGallery(props) {
                     <Product 
                         imgUrl={getElement(x, cases).img}
                         isSelected={i === selected ? "true" : "false"}
-                        clickHandler={() => selectCase(x)}
+                        clickHandler={() => selectCase(x, i)}
                         />
                     )
                 })
