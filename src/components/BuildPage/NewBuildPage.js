@@ -19,7 +19,7 @@ import ProductGallery from "./ProductGallery"
 
 import styles from "./buildpage.module.scss"
 
-import {getPrice} from "../../utilities/utilities"
+import {getPrice, getElement} from "../../utilities/utilities"
 
 function NewBuildPage(props) {
 
@@ -27,35 +27,39 @@ function NewBuildPage(props) {
 
     let build =  builds.find(build => build.name === name)
 
-    const [cpuPrice, updateCpuPrice] = useState(getPrice(build.cpus[0], cpus))
-    const [gpuPrice, updateGpuPrice] = useState(getPrice(build.gpus[0], gpus))
-    const [moboPrice, updateMoboPrice] = useState(getPrice(build.mobos[0], mobos))
-    const [ramPrice, updateRamPrice] = useState(getPrice(build.rams[0], rams))
+    const [currentCpu, updateCurrentCpu] = useState(getElement(build.cpus[0], cpus))
+    const [currentGpu, updateGpuPrice] = useState(getElement(build.gpus[0], gpus))
+    const [currentMobo, updateMoboPrice] = useState(getElement(build.mobos[0], mobos))
+    const [currentRam, updateRamPrice] = useState(getElement(build.rams[0], rams))
     const [casePrice, updateCasePrice] = useState(getPrice(build.cases[0], cases))
-    const [storagePrice, updateStoragePrice] = useState(getPrice(build.storage[0], storage))
-    const [currentPrice, updateCurrentPrice] = useState(cpuPrice + gpuPrice + moboPrice + ramPrice + casePrice + storagePrice+ getPrice(build.psu[0], psus))
+    const [currentStorage, updateStoragePrice] = useState(getElement(build.storage[0], storage))
+    const [currentPrice, updateCurrentPrice] = useState()
 
-    const cpuUpdate = (price) => {
-        updateCpuPrice(price)
+    const cpuUpdate = (id) => {
+        updateCurrentCpu(getElement(id, cpus))
     }
-    const gpuUpdate = (price) => {
-        updateGpuPrice(price)
+    const gpuUpdate = (id) => {
+        updateGpuPrice(getElement(id, gpus))
     }
-    const moboUpdate = (price) => {
-        updateMoboPrice(price)
+    const moboUpdate = (id) => {
+        updateMoboPrice(getElement(id, mobos))
     }
-    const ramUpdate = (price) => {
-        updateRamPrice(price)
+    const ramUpdate = (id) => {
+        updateRamPrice(getElement(id, rams))
     }
-    const storageUpdate = (price) => {
-        updateStoragePrice(price)
+    const storageUpdate = (id) => {
+        updateStoragePrice(getElement(id, storage))
     }
+
     const caseUpdate = (price) => {
         updateCasePrice(price)
     }
-        
-    //eslint-disable-next-line
-    useEffect(()=>{updateCurrentPrice(cpuPrice + gpuPrice + moboPrice + ramPrice + casePrice + storagePrice + getPrice(build.psu[0], psus))}, [cpuPrice, gpuPrice, moboPrice, ramPrice, casePrice, storagePrice])
+    
+    useEffect(()=>{updateCurrentPrice(
+        currentCpu && currentGpu && currentMobo && currentRam && currentStorage ? (
+            currentCpu.price + currentGpu.price + currentMobo.price + currentRam.price + casePrice + currentStorage.price + getPrice(build.psu[0], psus)
+        ) : ("")
+       )}, [currentCpu, currentGpu, currentMobo, currentRam, casePrice, currentStorage, build.psu])
 
     return (
         <div>

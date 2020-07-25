@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 
 import {FormControl, FormLabel, RadioGroup, Radio, FormControlLabel} from "@material-ui/core"
-import {getPrice} from "../../utilities/utilities"
+import {getElement} from "../../utilities/utilities"
 
 import styles from "./buildpage.module.scss"
 
@@ -27,7 +27,7 @@ function PartsInfo(props) {
 
     const handleChange = (event) => {
     setValue(event.target.value);
-    props.onChange(getPrice(event.target.value, props.db))
+    props.onChange(getElement(event.target.value, props.db))
     };
 
     return(
