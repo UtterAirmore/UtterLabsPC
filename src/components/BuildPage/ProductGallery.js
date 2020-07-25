@@ -20,7 +20,7 @@ function ProductGallery(props) {
 
     return(
         <Container className={styles.gallery}>
-            <Image  className="mx-auto img-thumbnail h-75 w-75" src={currentCase.img} />
+            <Image className={styles.bigImage} src={currentCase.img} />
             <Row xl={5} lg={4} md={3} xs={2} className="justify-content-center">
             {props.build.cases.map((x, i) => {
                 return(
@@ -40,8 +40,9 @@ function ProductGallery(props) {
 
 const Product = (props) => {
     return(
-        <button
-            className={styles.button}
+        <Container fluid>
+            <button
+            className="my-2"
             role="tab"
             tabIndex="0"
             aria-selected={props.isSelected}
@@ -50,6 +51,7 @@ const Product = (props) => {
         >
             <img className="img-fluid" src={props.imgUrl} alt=""/>
         </button>
+        </Container>
     )
 }
 

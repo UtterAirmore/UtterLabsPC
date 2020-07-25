@@ -3,7 +3,7 @@
 }
 
 .radio {
-    min-width: 400px;
+    width: 500px;
     min-height: 55px;
     margin-bottom: 10px;
     padding: 15px;
@@ -16,9 +16,16 @@
 
 .button {
   margin: 5px;
-  width: 25%;
 }
 
+.bigImage {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2px;
+  border-color: #D6D6D6;
+  width: 75%;
+  height: 75%;
+}
 
 .gallery {
     text-align: center;
@@ -57,3 +64,13 @@
 
 }
 
+@media (max-width:629px) {
+  .radio {
+    width: 350px;
+  }
+
+  .bigImage {
+    width: 100%;
+    height: 100%;
+  }
+}

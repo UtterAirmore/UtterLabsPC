@@ -15,6 +15,7 @@ import rams from "../../data/rams"
 import mobos from "../../data/mobos"
 import psus from "../../data/psus"
 import cases from "../../data/cases"
+import storage from "../../data/storage"
 
 function Shop(props) {
     
@@ -41,6 +42,7 @@ function Shop(props) {
                     getPrice(x.rams[0], rams) +
                     getPrice(x.mobos[0], mobos) + 
                     getPrice(x.cases[0], cases) +
+                    getPrice(x.storage[0], storage) + 
                     getPrice(x.psu[0], psus)
 
                 }

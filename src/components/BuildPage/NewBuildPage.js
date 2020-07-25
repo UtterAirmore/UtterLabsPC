@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 
-import { Col, Row, Container, Badge} from "react-bootstrap"
+import { Col, Row, Container} from "react-bootstrap"
 
 import { useParams } from "react-router-dom";
 
@@ -16,6 +16,7 @@ import storage from "../../data/storage"
 import BuildPageFooter from "./BuildPageFooter"
 import PartsInfo from "./PartsInfo"
 import ProductGallery from "./ProductGallery"
+import Info from "./info"
 
 import styles from "./buildpage.module.scss"
 
@@ -56,27 +57,26 @@ function NewBuildPage(props) {
     }
     
     useEffect(() => {updateCurrentPrice(
-        currentCpu && currentGpu && currentMobo && currentRam && currentStorage ? (
-           currentCpu.price + currentGpu.price + currentMobo.price + currentRam.price + casePrice + currentStorage.price + getPrice(build.psu[0], psus)
-        ) : ("")
+           currentCpu.price + currentGpu.price + currentMobo.price + currentRam.price + casePrice + currentStorage.price + getElement(build.psu[0], psus).price
         )}, [currentCpu, currentGpu, currentMobo, currentRam, casePrice, currentStorage, build.psu])
 
     return (
         <div>
             <Container fluid className={styles.main}>
-                <Row className="p-2">
-                    <Col className="img-thumbnail">
-                        <article>
-                            <h1 className=" m-4 text-capitalize text-center"><Badge variant="success">{build.type}</Badge> {build.name}</h1>
-                            <Container fluid className=" mb-2 img-thumbnail align-middle">
-                                
-                            </Container>
-                        </article>
-                    </Col>
-                </Row>
                 <Row>
                     <Col  xl={6} sm={6}><ProductGallery onChange={caseUpdate} build={build} /></Col>
                     <Col xl={5} sm={5}>
+                        <div className="p-2 img-thumbnail">
+                        <Info 
+                                currentcpu={currentCpu}
+                                currentgpu={currentGpu}
+                                currentmobo={currentMobo}
+                                currentram={currentRam}
+                                currentstorage={currentStorage}
+                                currentpsu={getElement(build.psu[0], psus)}  
+                            /> 
+                        </div>
+                                              
                         <PartsInfo onChange={cpuUpdate} type="Processor" db={cpus} part={build.cpus} />
                         <PartsInfo onChange={gpuUpdate} type="Video Card" db={gpus} part={build.gpus} />
                         <PartsInfo onChange={moboUpdate} type="Motherboard" db={mobos} part={build.mobos} />
@@ -99,7 +99,9 @@ function NewBuildPage(props) {
                     Nulla sit amet varius tellus. Morbi augue nibh, dignissim id convallis et, auctor non leo. Aliquam erat volutpat. Pellentesque sollicitudin blandit volutpat. Cras luctus quam est, pulvinar faucibus dui consectetur ac. Mauris fermentum arcu semper, feugiat augue vitae, facilisis diam. Aenean iaculis mi a diam auctor, sit amet feugiat est maximus. Quisque venenatis convallis elit non fringilla. Curabitur nec hendrerit diam. Sed quis malesuada turpis. Duis tortor lectus, lobortis in lorem a, pellentesque auctor tortor. Proin feugiat dolor nulla, lobortis condimentum leo eleifend id. Nam nisl ante, pulvinar sed maximus eleifend, mattis nec metus. Curabitur nec purus nisl. Pellentesque quam tortor, convallis nec est sit amet, fringilla consequat ipsum.</p>
                 </Row>
             </Container>
-            <BuildPageFooter price={currentPrice}/>
+            <BuildPageFooter 
+                build={[currentCpu, currentGpu, currentMobo, currentRam, currentStorage]}
+                price={currentPrice} />
         </div>
     )
 }

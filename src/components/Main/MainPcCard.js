@@ -13,6 +13,7 @@ import rams from "../../data/rams"
 import mobos from "../../data/mobos"
 import psus from "../../data/psus"
 import cases from "../../data/cases"
+import storage from "../../data/storage"
 
 function GetRandomBuilds(arr, num) {
     var result = new Array(num),
@@ -35,14 +36,15 @@ function GetRandomBuilds(arr, num) {
                 ram={x.rams ? getFirstElement(x.rams, rams) : ""}
                 imgUrl={x.cases ? getElement(x.cases[0], cases).img : ""}
                 price={
-                    x.cpus && x.gpus && x.rams && x.mobos && x.psu && x.cases ?
+                    x.cpus && x.gpus && x.rams && x.mobos && x.psu && x.cases && x.storage?
                     
                     getPrice(x.cpus[0], cpus) + 
                     getPrice(x.gpus[0], gpus) + 
                     getPrice(x.rams[0], rams) +
                     getPrice(x.mobos[0], mobos) + 
                     getPrice(x.cases[0], cases) +
-                    getPrice(x.psu[0], psus)
+                    getPrice(x.psu[0], psus) + 
+                    getPrice(x.storage[0], storage)
                     : ""
                 }
                 type={x.type}
