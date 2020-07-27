@@ -24,6 +24,7 @@ import {getPrice, getElement} from "../../utilities/utilities"
 
 function NewBuildPage(props) {
 
+    let intg 
     let { name } = useParams()
 
     let build =  builds.find(build => build.name === name)
@@ -38,6 +39,8 @@ function NewBuildPage(props) {
 
     const cpuUpdate = (id) => {
         updateCurrentCpu(getElement(id, cpus))
+        if (currentCpu.hasOwnProperty("intGraphics")) intg=true
+        if (!currentCpu.hasOwnProperty("intGraphics")) intg=false
     }
     const gpuUpdate = (id) => {
         updateGpuPrice(getElement(id, gpus))
@@ -77,8 +80,8 @@ function NewBuildPage(props) {
                             /> 
                         </div>
                                               
-                        <PartsInfo onChange={cpuUpdate} type="Processor" db={cpus} part={build.cpus} />
-                        <PartsInfo onChange={gpuUpdate} type="Video Card" db={gpus} part={build.gpus} />
+                        <PartsInfo onChange={cpuUpdate}  type="Processor" db={cpus} part={build.cpus} />
+                        <PartsInfo intGraphics={intg} onChange={gpuUpdate} type="Video Card" db={gpus} part={build.gpus} />
                         <PartsInfo onChange={moboUpdate} type="Motherboard" db={mobos} part={build.mobos} />
                         <PartsInfo onChange={ramUpdate} type="Ram" db={rams} part={build.rams} />
                         <PartsInfo onChange={storageUpdate} type="Storage" db={storage} part={build.storage} />

@@ -5,7 +5,6 @@ import {getFirstElement, getElement, getPrice} from "../../utilities/utilities"
 import { Container, Button, Col, Row } from "react-bootstrap"
 import ComputerCard from "../ComputerCard/ComputerCard"
 import builds from "../../data/builds"
-import studioBuilds from "../../data/studio-builds"
 
 import cpus from "../../data/cpus"
 import gpus from "../../data/gpus"
@@ -65,7 +64,7 @@ class MainPcCard extends React.Component {
                     <Col>{this.props.type === "Gaming" ? (<Button href="/gaming">View All</Button>) : (<Button href="/studio">View All</Button>)}</Col>
                 </Row>
                 <Row xl={2} lg={2} md={2} xs={1}>
-                    {this.props.type === "Gaming" ? ( GetRandomBuilds(builds, 2) ) : (GetRandomBuilds(studioBuilds, 4))}
+                    {this.props.type === "Gaming" ? (GetRandomBuilds(builds, 2)) : (GetRandomBuilds(builds.filter(build => build.type === "special"), 1))}
                 </Row>
             </Container>
         )

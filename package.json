@@ -1,7 +1,6 @@
 {
   "name": "website",
   "version": "0.1.0",
-  "main": "public/main.js",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",

@@ -23,7 +23,7 @@ function Shop(props) {
         var arr = builds;
     else if (props.type === "Studio")
         //eslint-disable-next-line
-        var arr = studioBuilds;
+        var arr = builds.filter(build => build.type === "special")
     else if (props.type === "Special")
         //eslint-disable-next-line
         var arr = builds.filter(build => build.type ==="special")

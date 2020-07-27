@@ -20,6 +20,14 @@ const cpus = [
         price: 150
     },
 
+    {
+        name: "Intel Pentium G5400",
+        id: "iPg5400",
+        socket: "LGA1151", 
+        intGrahpics: "Intel UHD 610",
+        price: 70
+    }
+
     
 ]
 

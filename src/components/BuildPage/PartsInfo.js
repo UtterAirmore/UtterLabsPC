@@ -3,6 +3,7 @@ import React, {useState} from "react"
 import {FormControl, FormLabel, RadioGroup, Radio, FormControlLabel} from "@material-ui/core"
 
 import styles from "./buildpage.module.scss"
+import { getElementError } from "@testing-library/react"
 
 function OptionButton(props) {
     return(
@@ -31,12 +32,21 @@ function PartsInfo(props) {
 
     return(
         <div>
-            <FormControl component="fieldset">
-                <FormLabel component="legend">{props.type}</FormLabel>
-                <RadioGroup aria-label="part" name="part1" value={value} onChange={handleChange}>
-                    {getInfo(props.part, props.db)}
-                </RadioGroup>
-            </FormControl>
+            {props.intGraphics===true ? (
+                <FormControl component="fieldset" disabled>
+                    <FormLabel component="legend">{props.type}</FormLabel>
+                    <RadioGroup aria-label="part" name="part1" value={value} onChange={handleChange}>
+                        {getInfo(props.part, props.db)}
+                    </RadioGroup>
+                </FormControl>
+            ) : (
+                    <FormControl component="fieldset">
+                        <FormLabel component="legend">{props.type}</FormLabel>
+                        <RadioGroup aria-label="part" name="part1" value={value} onChange={handleChange}>
+                            {getInfo(props.part, props.db)}
+                        </RadioGroup>
+                    </FormControl>
+            )}
         </div>
 
   )
