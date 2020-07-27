@@ -10,7 +10,6 @@ import NewBuildPage from "./BuildPage/NewBuildPage"
 function App() {
 
     return (
-        <div>
             <NavigationBar />
             <Routes>
                 <Route path="/gaming">
@@ -28,8 +27,6 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/" element={<Main />} />
             </Routes>
-            
-        </div>
     )
 }
 
